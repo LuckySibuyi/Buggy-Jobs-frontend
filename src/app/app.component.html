@@ -1,4 +1,7 @@
 <h1>Job Postings</h1>
 
+<!-- Add Job Form -->
 <app-add-job (jobAdded)="jobList.loadJobs()"></app-add-job>
+
+<!-- Job List -->
 <app-job-list #jobList></app-job-list>
