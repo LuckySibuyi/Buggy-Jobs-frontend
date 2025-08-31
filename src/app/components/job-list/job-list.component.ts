@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-job-list',
-  standalone: true,           // <- mark component as standalone
-  imports: [CommonModule, FormsModule],  // <- import NgFor, ngModel
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   template: `
     <div>
       <input [(ngModel)]="filterType" placeholder="Filter by type">
@@ -32,13 +32,15 @@ export class JobListComponent implements OnInit {
     this.loadJobs();
   }
 
+  // Load all jobs from backend
   loadJobs() {
-    this.http.get('http://localhost:5000/api/jobs').subscribe((data: any) => {
+    this.http.get('http://localhost:5035/api/jobs').subscribe((data: any) => {
       this.jobs = data;
       this.filteredJobs = [...this.jobs];
     });
   }
 
+  // Filter jobs by type
   applyFilter() {
     if (!this.filterType) {
       this.filteredJobs = [...this.jobs];
@@ -49,8 +51,9 @@ export class JobListComponent implements OnInit {
     }
   }
 
+  // Delete a job by ID
   deleteJob(id: number) {
-    this.http.delete(`http://localhost:5000/api/jobs/${id}`).subscribe(() => {
+    this.http.delete(`http://localhost:5035/api/jobs/${id}`).subscribe(() => {
       this.jobs = this.jobs.filter(j => j.id !== id);
       this.applyFilter();
     });
