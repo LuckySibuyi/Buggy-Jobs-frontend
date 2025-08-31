@@ -1,27 +1,37 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Job } from '../job-list/job-list.component';
 
 @Component({
   selector: 'app-add-job',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './add-job.component.html'
+  templateUrl: './add-job.component.html',
+  styleUrls: ['./add-job.component.css']
+  
 })
 export class AddJobComponent {
+  @Output() jobAdded = new EventEmitter<Job>();
+
   title = '';
   description = '';
+  type = '';
+  location = '';
 
-  @Output() jobAdded = new EventEmitter<void>();
+  submit() {
+    if (!this.title || !this.description || !this.type || !this.location) return;
 
-  addJob() {
-    // Normally you would send this to backend
-    console.log('Job added:', { title: this.title, description: this.description });
-
-    // Emit event to parent
-    this.jobAdded.emit();
+    this.jobAdded.emit({
+      title: this.title,
+      description: this.description,
+      type: this.type,
+      location: this.location,
+    });
 
     // Clear form
     this.title = '';
     this.description = '';
+    this.type = '';
+    this.location = '';
   }
 }

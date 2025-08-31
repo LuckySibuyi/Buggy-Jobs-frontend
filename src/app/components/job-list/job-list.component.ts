@@ -1,17 +1,24 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // ✅ needed for *ngFor
+import { CommonModule } from '@angular/common';
+
+export interface Job {
+  title: string;
+  description: string;
+  type: string;
+  location: string;
+}
 
 @Component({
   selector: 'app-job-list',
   standalone: true,
-  imports: [CommonModule], // ✅ include CommonModule
-  templateUrl: './job-list.component.html'
+  imports: [CommonModule],
+  templateUrl: './job-list.component.html',
+  styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent {
-  jobs: { title: string; description: string }[] = [];
+  jobs: Job[] = [];
 
-  loadJobs() {
-    // Example: add a dummy job or refresh from backend
-    this.jobs.push({ title: 'Frontend Developer', description: 'Build Angular apps' });
+  addJob(job: Job) {
+    this.jobs.push(job);
   }
 }

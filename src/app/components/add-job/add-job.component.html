@@ -1,5 +1,19 @@
-<div>
-  <input [(ngModel)]="title" placeholder="Job Title" />
-  <input [(ngModel)]="description" placeholder="Job Description" />
-  <button (click)="addJob()">Add Job</button>
-</div>
+<form (ngSubmit)="submit()">
+  <div>
+    <label>Title:</label>
+    <input [(ngModel)]="title" name="title" required>
+  </div>
+  <div>
+    <label>Description:</label>
+    <input [(ngModel)]="description" name="description" required>
+  </div>
+  <div>
+    <label>Type:</label>
+    <input [(ngModel)]="type" name="type" required>
+  </div>
+  <div>
+    <label>Location:</label>
+    <input [(ngModel)]="location" name="location" required>
+  </div>
+  <button type="submit">Add Job</button>
+</form>

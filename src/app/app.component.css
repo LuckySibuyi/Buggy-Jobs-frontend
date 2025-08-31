@@ -1,0 +1,13 @@
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+}
+
+:host {
+  display: block;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}

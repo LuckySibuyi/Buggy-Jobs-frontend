@@ -1,5 +1,18 @@
-<ul>
-  <li *ngFor="let job of jobs">
-    {{ job.title }} - {{ job.description }}
-  </li>
-</ul>
+<table border="1" width="100%">
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Type</th>
+    <th>Location</th>
+  </tr>
+  <tr *ngFor="let job of jobs">
+    <td>{{ job.title }}</td>
+    <td>{{ job.description }}</td>
+    <td>{{ job.type }}</td>
+    <td>{{ job.location }}</td>
+  </tr>
+</table>
+
+<div *ngIf="jobs.length === 0">
+  No jobs available.
+</div>
