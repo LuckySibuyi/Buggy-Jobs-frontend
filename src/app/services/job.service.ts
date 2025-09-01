@@ -6,7 +6,7 @@ import { Job } from './job.model'; // <-- make sure this path matches exactly
   providedIn: 'root'
 })
 export class JobService {
-  private apiUrl = 'https://localhost:5001/api/jobs'; // adjust to your backend URL
+  private apiUrl = 'http://localhost:5035/api/jobs';
 
   constructor(private http: HttpClient) {}
 
