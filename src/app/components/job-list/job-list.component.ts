@@ -26,7 +26,7 @@ export class JobListComponent implements OnInit {
   loadJobs() {
     this.jobService.getJobs().subscribe(data => {
       this.jobs = data;
-      this.filteredJobs = data;
+      this.filteredJobs = [...data];
     });
   }
 
@@ -36,4 +36,13 @@ export class JobListComponent implements OnInit {
       (!this.filterLocation || job.location?.toLowerCase().includes(this.filterLocation.toLowerCase()))
     );
   }
+
+  deleteJob(id: number) {
+    if (confirm('Are you sure you want to delete this job?')) {
+      this.jobService.deleteJob(id).subscribe(() => {
+        this.loadJobs();
+      });
+    }
+  }
 }
+

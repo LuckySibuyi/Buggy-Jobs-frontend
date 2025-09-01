@@ -9,3 +9,8 @@ h1 {
   color: #333;
   margin-bottom: 20px;
 }
+app-add-job {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+}

@@ -6,5 +6,3 @@ export interface Job {
   location?: string;
   closingDate: string;
 }
-
-
