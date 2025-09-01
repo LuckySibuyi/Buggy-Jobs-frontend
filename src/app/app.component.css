@@ -1,13 +1,11 @@
-h1 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 20px;
+.container {
+  width: 80%;
+  margin: 0 auto;
   font-family: Arial, sans-serif;
+  text-align: center;
 }
 
-:host {
-  display: block;
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+h1 {
+  color: #333;
+  margin-bottom: 20px;
 }

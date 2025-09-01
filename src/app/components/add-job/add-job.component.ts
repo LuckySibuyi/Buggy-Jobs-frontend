@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Job } from '../job-list/job-list.component';
+import { Job } from '../../services/job.model';
+import { JobService } from '../../services/job.service';
 
 @Component({
   selector: 'app-add-job',
@@ -8,30 +9,29 @@ import { Job } from '../job-list/job-list.component';
   imports: [FormsModule],
   templateUrl: './add-job.component.html',
   styleUrls: ['./add-job.component.css']
-  
 })
 export class AddJobComponent {
-  @Output() jobAdded = new EventEmitter<Job>();
+  @Output() jobAdded = new EventEmitter<void>();
 
-  title = '';
-  description = '';
-  type = '';
-  location = '';
+  job: Job = { title: '', description: '', type: '', location: '', closingDate: '' };
 
-  submit() {
-    if (!this.title || !this.description || !this.type || !this.location) return;
+  constructor(private jobService: JobService) {}
 
-    this.jobAdded.emit({
-      title: this.title,
-      description: this.description,
-      type: this.type,
-      location: this.location,
+  addJob() {
+    if (!this.job.title || !this.job.closingDate) {
+      alert('Title and closing date are required.');
+      return;
+    }
+
+    const closing = new Date(this.job.closingDate);
+    if (closing <= new Date()) {
+      alert('Closing date must be in the future.');
+      return;
+    }
+
+    this.jobService.addJob(this.job).subscribe(() => {
+      this.jobAdded.emit();
+      this.job = { title: '', description: '', type: '', location: '', closingDate: '' };
     });
-
-    // Clear form
-    this.title = '';
-    this.description = '';
-    this.type = '';
-    this.location = '';
   }
 }

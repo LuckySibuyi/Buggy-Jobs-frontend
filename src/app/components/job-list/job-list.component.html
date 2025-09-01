@@ -1,18 +1,27 @@
-<table border="1" width="100%">
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Type</th>
-    <th>Location</th>
-  </tr>
-  <tr *ngFor="let job of jobs">
-    <td>{{ job.title }}</td>
-    <td>{{ job.description }}</td>
-    <td>{{ job.type }}</td>
-    <td>{{ job.location }}</td>
-  </tr>
+<div class="filter">
+  <input [(ngModel)]="filterType" placeholder="Filter by type">
+  <button (click)="applyFilter()">Filter</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Location</th>
+      <th>Closing Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let job of filteredJobs">
+      <td>{{ job.title }}</td>
+      <td>{{ job.description }}</td>
+      <td>{{ job.type }}</td>
+      <td>{{ job.location }}</td>
+      <td>{{ job.closingDate }}</td>
+    </tr>
+  </tbody>
 </table>
 
-<div *ngIf="jobs.length === 0">
-  No jobs available.
-</div>
+<div *ngIf="filteredJobs.length === 0">No jobs available.</div>

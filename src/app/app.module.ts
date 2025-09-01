@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, signal } from '@angular/core';
+import { AddJobComponent } from './components/add-job/add-job.component';
+import { JobListComponent } from './components/job-list/job-list.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-job-list',
+  selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  template: `<p>Job List Component works!</p>`
+  imports: [AddJobComponent, JobListComponent, FormsModule],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class JobListComponent {}
+export class AppComponent {
+  readonly title = signal('Buggy Jobs');
+}

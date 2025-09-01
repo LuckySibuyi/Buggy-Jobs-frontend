@@ -1,33 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-export interface Job {
-  id?: number;
-  title: string;
-  type: string;
-  location: string;
-  description: string;
-  closingDate: Date;
-}
+import { Job } from './job.model'; // <-- make sure this path matches exactly
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobService {
-  private apiUrl = 'http://localhost:5035/api/jobs';
+  private apiUrl = 'https://localhost:5001/api/jobs'; // adjust to your backend URL
 
   constructor(private http: HttpClient) {}
 
-  getJobs(): Observable<Job[]> {
+  getJobs() {
     return this.http.get<Job[]>(this.apiUrl);
   }
 
-  addJob(job: Job): Observable<Job> {
+  addJob(job: Job) {
     return this.http.post<Job>(this.apiUrl, job);
   }
 
-  deleteJob(id: number): Observable<any> {
+  deleteJob(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }
