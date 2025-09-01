@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Job } from './job.model'; // <-- make sure this path matches exactly
+import { Job } from './job.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,15 @@ export class JobService {
 
   constructor(private http: HttpClient) {}
 
-  getJobs() {
+  getJobs(): Observable<Job[]> {
     return this.http.get<Job[]>(this.apiUrl);
   }
 
-  addJob(job: Job) {
+  addJob(job: Job): Observable<Job> {
     return this.http.post<Job>(this.apiUrl, job);
   }
 
-  deleteJob(id: number) {
+  deleteJob(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }

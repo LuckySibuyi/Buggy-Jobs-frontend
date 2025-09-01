@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Job } from '../../services/job.model';
 import { JobService } from '../../services/job.service';
+import { Job } from '../../services/job.model';
 
 @Component({
   selector: 'app-job-list',
@@ -14,7 +14,8 @@ import { JobService } from '../../services/job.service';
 export class JobListComponent implements OnInit {
   jobs: Job[] = [];
   filteredJobs: Job[] = [];
-  filterType: string = '';
+  filterType = '';
+  filterLocation = '';
 
   constructor(private jobService: JobService) {}
 
@@ -23,7 +24,7 @@ export class JobListComponent implements OnInit {
   }
 
   loadJobs() {
-    this.jobService.getJobs().subscribe((data: Job[]) => {
+    this.jobService.getJobs().subscribe(data => {
       this.jobs = data;
       this.filteredJobs = data;
     });
@@ -31,7 +32,8 @@ export class JobListComponent implements OnInit {
 
   applyFilter() {
     this.filteredJobs = this.jobs.filter(job =>
-      job.type.toLowerCase().includes(this.filterType.toLowerCase())
+      (!this.filterType || job.type?.toLowerCase().includes(this.filterType.toLowerCase())) &&
+      (!this.filterLocation || job.location?.toLowerCase().includes(this.filterLocation.toLowerCase()))
     );
   }
 }

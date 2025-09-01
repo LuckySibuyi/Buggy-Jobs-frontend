@@ -1,8 +1,22 @@
-<form (ngSubmit)="addJob()" class="job-form">
-  <input [(ngModel)]="job.title" name="title" placeholder="Job Title" required>
-  <input [(ngModel)]="job.description" name="description" placeholder="Description">
-  <input [(ngModel)]="job.type" name="type" placeholder="Type">
-  <input [(ngModel)]="job.location" name="location" placeholder="Location">
-  <input [(ngModel)]="job.closingDate" name="closingDate" type="date" placeholder="Closing Date" required>
-  <button type="submit">Add Job</button>
-</form>
+<div class="job-form">
+  <h2>Add New Job</h2>
+  <form (ngSubmit)="addJob()">
+    <label>Title:</label>
+    <input [(ngModel)]="job.title" name="title" required>
+
+    <label>Description:</label>
+    <input [(ngModel)]="job.description" name="description">
+
+    <label>Type:</label>
+    <input [(ngModel)]="job.type" name="type">
+
+    <label>Location:</label>
+    <input [(ngModel)]="job.location" name="location">
+
+    <label>Closing Date:</label>
+    <input type="date" [(ngModel)]="job.closingDate" name="closingDate" required>
+
+    <button type="submit">Add Job</button>
+  </form>
+</div>
+

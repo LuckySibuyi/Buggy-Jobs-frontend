@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Job } from '../../services/job.model';
 import { JobService } from '../../services/job.service';
+import { Job } from '../../services/job.model';
 
 @Component({
   selector: 'app-add-job',
